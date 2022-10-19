@@ -4,7 +4,6 @@ from flask import Flask, jsonify
 import pandas as pd
 import zstandard
 import os
-import time
 
 if not os.path.exists('quotes.csv'):
     # Decompress archive
