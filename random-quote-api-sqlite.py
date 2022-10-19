@@ -4,15 +4,18 @@ import os
 import sqlite3
 import csv_to_sqlite
 from flask import Flask, jsonify
-import zipfile
+import zstandard
 
 api = Flask(__name__)
 
 if not os.path.exists('quotes.db'):
     # Unzip the archive in current directory
     if not os.path.exists('quotes.csv'):
-        with zipfile.ZipFile("quotes.csv.zip", "r") as zip_ref:
-            zip_ref.extractall(os.getcwd())
+        # Decompress archive
+        dctx = zstandard.ZstdDecompressor()
+        with open('quotes.csv.zst', 'rb') as input:
+            with open('quotes.csv', 'wb') as output:
+                dctx.copy_stream(input, output)
 
     # Import csv into sqlite
     options = csv_to_sqlite.CsvOptions(typing_style="full", encoding="utf-8")
@@ -29,9 +32,9 @@ def random():
 
     # Send it to caller in json format
     return jsonify({
-                       'quote': random_quote[0],
-                       'author': random_quote[1]
-                   })
+       'quote': random_quote[0],
+       'author': random_quote[1]
+    })
 
 # /ping is just for testing purposes
 @api.route("/ping")
