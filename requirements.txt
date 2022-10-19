@@ -1,2 +1,3 @@
+csv_to_sqlite==2.1.1
 Flask==2.2.2
 pandas==1.5.0

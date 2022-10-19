@@ -2,7 +2,7 @@
 
 This is an API that returns a random quote.
 
-It uses `flask` for API endpoints and `pandas` for data processing.
+It uses `flask` for API endpoints and `pandas` and `sqlite` for data processing.
 
 # Usage
 
@@ -13,9 +13,13 @@ To run this,
 ```
 pip install -r requirements.txt
 ```
-- Then run the script,
+- Then run the script (`pandas` version),
 ```
 python random-quote-api.py
+```
+- To run the `sqlite` version,
+```python
+python random-quote-api-sqlite.py
 ```
 - Open http://localhost:8080 in your browser to get a random quote
 
