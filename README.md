@@ -15,19 +15,20 @@ To run this,
 - Install `python`
 - Download and extract this project from [here](https://github.com/sujay1844/random-quote-api/archive/refs/heads/main.zip)
 - Open a terminal/cmd in `random-quote-api-main` folder and run,
-```
+```bash
 pip install -r requirements.txt
 ```
 - To run the `pandas` version,
-```
+```bash
 python random-quote-api-pandas.py
 ```
 - To run the `sqlite` version,
-```python
+```bash
 python random-quote-api-sqlite.py
 ```
 - To run the `redis` version,
-```python
+```bash
+docker compose up -d
 python random-quote-api-redis.py
 ```
 - Open http://localhost:8080 in your browser to get a random quote
